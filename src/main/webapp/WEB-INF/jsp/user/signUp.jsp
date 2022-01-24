@@ -19,7 +19,7 @@
 
 </head>
 <body>
-	<div id = "warp" class = "bg-info">
+	<div id = "warp" class = "container">
 	
 		<c:import url = "/WEB-INF/jsp/include/header.jsp" />
 	
