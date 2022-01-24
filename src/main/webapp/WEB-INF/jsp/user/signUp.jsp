@@ -19,7 +19,7 @@
 
 </head>
 <body>
-	<div id = "warp" class = "container">
+	<div id = "warp">
 	
 		<c:import url = "/WEB-INF/jsp/include/header.jsp" />
 	
@@ -28,18 +28,72 @@
 				<div class = "display-4">회원가입</div>
 				
 				<!-- 아이디, 비밀번호, 비밀번호 확인, 이름, 이메일 -->
-				<input type = "text" class = "form-control mt-3" placeholder = "아이디">
-				<input type = "password" class = "form-control mt-3" placeholder = "비밀번호">
-				<input type = "password" class = "form-control mt-3" placeholder = "비밀번호 확인">
-				<input type = "text" class = "form-control mt-3" placeholder = "이름">
-				<input type = "text" class = "form-control mt-3" placeholder = "이메일">
+				<input type = "text" class = "form-control mt-3" placeholder = "아이디" id = "loginIdInput">
+				<input type = "password" class = "form-control mt-3" placeholder = "비밀번호" id = "passwordInput">
+				<input type = "password" class = "form-control mt-3" placeholder = "비밀번호 확인" id = "passwordConfirmInput">
+				<input type = "text" class = "form-control mt-3" placeholder = "이름" id = "nameInput">
+				<input type = "text" class = "form-control mt-3" placeholder = "이메일" id = "emailInput">
 				
-				<button type = "button" class = "btn btn-info btn-block mt-3">회원가입</button>
+				<button type = "button" id = "joinBtn" class = "btn btn-info btn-block mt-3">회원가입</button>
 			</div>
 		
 		</section>
 		
 		<c:import url = "/WEB-INF/jsp/include/footer.jsp" />
 	</div>
+	
+	<script>
+		$(document).ready(function() {
+			$("#joinBtn").on("click", function() {
+				var loginId = $("#loginIdInput").val();
+				var password = $("#passwordInput").val();
+				var passwordConfirm = $("#passwordConfirmInput").val();
+				var name = $("#nameInput").val();
+				var email = $("#emailInput").val();
+				
+				if(loginId == "") {
+					alert("아이디를 입력하세요");
+					return;
+				}
+				
+				if(password == "") {
+					alert("비밀번호를 입력하세요");
+					return;
+				}
+				
+				if(password != passwordConfirm) {
+					alert("비밀번호가 일치하지 않습니다");
+					return;
+				}
+				
+				if(name == "") {
+					alert("이름을 입력하세요");
+					return;
+				}
+				
+				if(email == "") {
+					alert("이메일을 입력하세요");
+					return;
+				}
+				
+				$.ajax({
+					type:"post",
+					url:"/user/sign_up",
+					data:{"loginId":loginId, "password":password, "name":name, "email":email},
+					success:function(data) {
+						if(data.result == "success") {
+							// 로그인 화면으로 이동
+							location.href = "/user/signin_view";
+						} else {
+							alert("회원가입 실패");
+						}
+					},
+					error:function() {
+						alert("에러 발생");
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
