@@ -1,12 +1,13 @@
 @charset "UTF-8";
 
 #warp {
-	width:800px;
+	width:1200px;
 	margin:auto;
 }
 
 header {
 	height:70px;
+	background-color: lightgray;
 }
 
 .content {
@@ -17,6 +18,11 @@ header {
 	width:400px;
 }
 
+.login-box {
+	width:400px;
+}
+
 footer {
 	hieght:50px;
+	background-color: lightgray;
 }

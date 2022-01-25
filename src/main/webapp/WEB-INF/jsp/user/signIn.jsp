@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>로그인</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -19,23 +19,22 @@
 
 </head>
 <body>
-	<div id = "warp">
-	
+	<div id = "wrap">
 		<c:import url = "/WEB-INF/jsp/include/header.jsp" />
-	
-		<section class = "content d-flex justify-content-center">
-			<div class = "join-box my-5">
-				<div class = "display-4">회원가입</div>
-				
-				<!-- 아이디, 비밀번호, 비밀번호 확인, 이름, 이메일 -->
+		
+		<section class = "d-flex justify-content-center">
+		
+		<form id = "loginForm">
+			<div class = "login-box my-5">
 				<input type = "text" class = "form-control mt-3" placeholder = "아이디" id = "loginIdInput">
 				<input type = "password" class = "form-control mt-3" placeholder = "비밀번호" id = "passwordInput">
-				<input type = "password" class = "form-control mt-3" placeholder = "비밀번호 확인" id = "passwordConfirmInput">
-				<input type = "text" class = "form-control mt-3" placeholder = "이름" id = "nameInput">
-				<input type = "text" class = "form-control mt-3" placeholder = "이메일" id = "emailInput">
+				<button type = "submit" class = "btn btn-secondary btn-block mt-3">로그인</button>
 				
-				<button type = "button" id = "joinBtn" class = "btn btn-secondary btn-block mt-3">회원가입</button>
+				<div class = "text-center mt-2">
+					<a href = "/user/signup_view">회원가입</a>
+				</div>
 			</div>
+		</form>
 		
 		</section>
 		
@@ -44,12 +43,11 @@
 	
 	<script>
 		$(document).ready(function() {
-			$("#joinBtn").on("click", function() {
+			$("#loginForm").on("submit", function(e) {
+				e.preventDefault();
+				
 				var loginId = $("#loginIdInput").val();
 				var password = $("#passwordInput").val();
-				var passwordConfirm = $("#passwordConfirmInput").val();
-				var name = $("#nameInput").val();
-				var email = $("#emailInput").val();
 				
 				if(loginId == "") {
 					alert("아이디를 입력하세요");
@@ -61,31 +59,15 @@
 					return;
 				}
 				
-				if(password != passwordConfirm) {
-					alert("비밀번호가 일치하지 않습니다");
-					return;
-				}
-				
-				if(name == "") {
-					alert("이름을 입력하세요");
-					return;
-				}
-				
-				if(email == "") {
-					alert("이메일을 입력하세요");
-					return;
-				}
-				
 				$.ajax({
 					type:"post",
-					url:"/user/sign_up",
-					data:{"loginId":loginId, "password":password, "name":name, "email":email},
+					url:"/user/sign_in",
+					data:{"loginId":loginId, "password":password},
 					success:function(data) {
 						if(data.result == "success") {
-							// 로그인 화면으로 이동
-							location.href = "/user/signin_view";
+							location.href = "/post/list_view";
 						} else {
-							alert("회원가입 실패");
+							alert("아이디/비밀번호를 확인하세요");
 						}
 					},
 					error:function() {
