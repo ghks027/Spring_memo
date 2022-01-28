@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ganghwan.memo.post.DAO.PostDAO;
 import com.ganghwan.memo.post.model.Post;
@@ -14,7 +15,10 @@ public class PostBO {
 	@Autowired
 	private PostDAO postDAO;
 	
-	public int addPost(int userId, String subject, String content) {
+	public int addPost(int userId, String subject, String content, MultipartFile file) {
+		
+		// 파일 저장
+		
 		return postDAO.insertPost(userId, subject, content);
 	}
 	
