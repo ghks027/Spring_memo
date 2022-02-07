@@ -10,10 +10,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileManagerService {
 	
-	public final String FILE_UPLOAD_PATH = "D:\\웹프런트 조경환1105\\Spring Project\\upload\\image/";
+	public final static String FILE_UPLOAD_PATH = "D:\\웹프런트 조경환1105\\Spring Project\\upload\\image/";
 	
 	// 파일 저장
-	public String saveFile(int userId, MultipartFile file) {
+	// static 객체 생성 없이 사용가능한 멤버 변수 - 변수 만듦
+	public static String saveFile(int userId, MultipartFile file) {
 		
 		// 파일 경로
 		// 사용자 별로 구분할 수 있도록

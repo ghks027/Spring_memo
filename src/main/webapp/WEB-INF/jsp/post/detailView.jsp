@@ -31,10 +31,13 @@
 				</div>
 				
 				<textarea class = "form-control mt-3" rows="5" id = "contentInput">${post.content }</textarea>
+				<div class = "d-flex justify-content-center">
+					<img class = "mt-3" width = "500" src = "${post.imagePath}">
+				</div>
 				<div class = "d-flex justify-content-between mt-3">
 					<div>
 						<a href = "/post/list_view" class = "btn btn-info">목록으로</a>
-						<button type = "button" class = "btn btn-danger" id = "deleteBtn" data-psot-id = "${post.id }">삭제</button>
+						<button type = "button" class = "btn btn-danger" id = "deleteBtn" data-post-id = "${post.id }">삭제</button>
 					</div>
 					<button type = "button" class = "btn btn-success" id = "saveBtn">수정</button>
 				</div>

@@ -22,7 +22,7 @@ public class PostRestController {
 
 	@Autowired
 	private PostBO postBO;
-	
+
 	@PostMapping("/create")
 	public Map<String, String> create(
 			@RequestParam("subject") String subject,
@@ -30,39 +30,39 @@ public class PostRestController {
 			@RequestParam("file") MultipartFile file,
 			HttpServletRequest request
 			) {
-		
+
 		HttpSession session = request.getSession();
-		
+
 		// 현재 로그인된 사용자의 user table id(pk)
 		int userId = (Integer)session.getAttribute("userId");
-		
+
 		int count = postBO.addPost(userId, subject, content, file);
-		
+
 		Map<String, String> result = new HashMap<>();
-		
+
 		if(count == 1) {
 			result.put("result", "success");
 		} else {
 			result.put("result", "fail");
 		}
-		
+
 		return result;
 	}
-	
+
 	@GetMapping("/delete")
-	public Map<String, String> postDalete(
+	public Map<String, String> postDelete(
 			@RequestParam("postId") int postId
 			) {
+
 		int count = postBO.deletePost(postId);
-		
+
 		Map<String, String> result = new HashMap<>();
-		
 		if(count == 1) {
 			result.put("result", "success");
 		} else {
 			result.put("result", "fail");
 		}
-		
+
 		return result;
 	}
 }

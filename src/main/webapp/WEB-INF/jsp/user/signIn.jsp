@@ -19,7 +19,7 @@
 
 </head>
 <body>
-	<div id = "wrap">
+	<div id = "warp">
 		<c:import url = "/WEB-INF/jsp/include/header.jsp" />
 		
 		<section class = "d-flex justify-content-center">
