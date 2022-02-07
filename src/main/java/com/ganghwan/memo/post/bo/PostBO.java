@@ -33,6 +33,11 @@ public class PostBO {
 	}
 	
 	public int deletePost(int postId) {
+		
+		// 파일 삭제
+		Post post = postDAO.selectPost(postId);
+		FileManagerService.removeFile(post.getImagePath());
+		
 		return postDAO.deletePost(postId);
 	}
 }
