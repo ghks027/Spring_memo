@@ -71,6 +71,11 @@ public class FileManagerService {
 	// 파일 삭제
 	public static void removeFile(String filePath) {
 		
+		if(filePath == null) {
+			logger.error("FileManagerService::saveFile - 삭제할 파일 없음");
+			return ;
+		}
+		
 		// 삭제할 파일 경로
 		// filePath : /images/2_2938745345/test.pag
 		// 실제 파일 경로 : D:\\웹프런트 조경환1105\\Spring Project\\upload\\image\\2_2938745345/test.pag
