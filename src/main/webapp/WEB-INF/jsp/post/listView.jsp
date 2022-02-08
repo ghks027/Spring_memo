@@ -23,7 +23,7 @@
 	<div id = "warp">
 		<c:import url = "/WEB-INF/jsp/include/header.jsp" />
 		
-		<section class =  "d-flex justify-content-center">
+		<section class = "d-flex justify-content-center">
 		<div class = "w-75 my-5">
 			<h1 class = "text-center">메모게시판</h1>
 			
